@@ -55,7 +55,7 @@ button.danger { background: #dc2626; }
 .status.error { background: #fee2e2; color: #991b1b; }
 .status.info { background: #dbeafe; color: #1e40af; }
 video { width: 100%; border-radius: 8px; background: #000; }
-#qr-canvas { max-width: 100%; height: auto; border-radius: 8px; background: #fff; display: block; margin: 0 auto; }
+#qr-image { max-width: 100%; height: auto; border-radius: 8px; background: #fff; display: block; margin: 0 auto; }
 .nav-links { text-align: center; margin-top: 20px; }
 .nav-links a { color: #2563eb; text-decoration: none; font-size: 14px; margin: 0 8px; }
 table { width: 100%; border-collapse: collapse; font-size: 13px; }
