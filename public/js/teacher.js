@@ -71,25 +71,13 @@ document.getElementById('start-btn').addEventListener('click', async () => {
 async function refreshQR() {
   if (!sessionId) return;
 
-  if (typeof QRCode === 'undefined') {
-    document.getElementById('timer-text').textContent =
-      'QR library failed to load. Check your internet connection and reload the page.';
-    return;
-  }
-
   const res = await fetch(`/api/sessions/${sessionId}/qr`);
   if (!res.ok) return;
   const data = await res.json();
 
-  const payload = JSON.stringify({ sessionId: data.sessionId, token: data.token });
-  const canvas = document.getElementById('qr-canvas');
-
-  QRCode.toCanvas(canvas, payload, { width: 260 }, (err) => {
-    if (err) {
-      console.error('QR generation failed:', err);
-      document.getElementById('timer-text').textContent = 'Failed to generate QR code: ' + err.message;
-    }
-  });
+  if (data.qrDataUrl) {
+    document.getElementById('qr-image').src = data.qrDataUrl;
+  }
 
   const secondsLeft = Math.max(0, Math.round((data.expiresAt - Date.now()) / 1000));
   document.getElementById('timer-text').textContent = `Refreshes in ~${secondsLeft}s`;
