@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mark Attendance</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<div class="container">
+  <h1>Mark Attendance</h1>
+  <p class="subtitle">Log in, scan the QR shown in class, then verify your face</p>
+
+  <div class="card" id="login-card">
+    <label>Roll Number</label>
+    <input id="rollNo" placeholder="e.g. CS21B045" />
+    <label>PIN</label>
+    <input id="pin" type="password" maxlength="4" placeholder="4-digit PIN" />
+    <button id="login-btn">Login</button>
+    <div class="status" id="login-status"></div>
+  </div>
+
+  <div class="card" id="scan-card" style="display:none;">
+    <h3>Step 1: Scan Classroom QR Code</h3>
+    <div id="qr-reader"></div>
+    <div class="status" id="scan-status"></div>
+  </div>
+
+  <div class="card" id="face-card" style="display:none;">
+    <h3>Step 2: Verify Your Face</h3>
+    <video id="video" autoplay muted playsinline></video>
+    <button id="verify-btn">Capture &amp; Mark Attendance</button>
+    <div class="status" id="face-status"></div>
+  </div>
+
+  <div class="nav-links"><a href="index.html">&larr; Back to Home</a></div>
+</div>
+
+<script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+<script src="js/student.js"></script>
+</body>
+</html>

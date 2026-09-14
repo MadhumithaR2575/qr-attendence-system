@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Teacher Dashboard</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<div class="container">
+  <h1>Teacher Dashboard</h1>
+  <p class="subtitle">Start a session and project the QR code for your class</p>
+
+  <div class="card" id="setup-card">
+    <label>Subject Name</label>
+    <input id="subjectName" placeholder="e.g. Data Structures" />
+    <label>Subject Code (optional)</label>
+    <input id="subjectCode" placeholder="e.g. CS201" />
+    <label>Your Name</label>
+    <input id="teacherName" placeholder="e.g. Prof. Rao" />
+    <label>QR refresh interval (seconds)</label>
+    <input id="tokenInterval" type="number" value="30" min="10" />
+    <label>Allowed radius from classroom (meters)</label>
+    <input id="radius" type="number" value="50" min="5" />
+    <button id="locate-btn">Set Current Location as Classroom</button>
+    <div class="status" id="locate-status"></div>
+    <button id="start-btn" disabled>Start Session</button>
+  </div>
+
+  <div class="card qr-wrap" id="qr-card" style="display:none;">
+    <h3 id="session-title"></h3>
+    <canvas id="qr-canvas"></canvas>
+    <div class="timer" id="timer-text"></div>
+    <button class="danger" id="end-btn">End Session</button>
+  </div>
+
+  <div class="card" id="attendance-card" style="display:none;">
+    <h3>Live Attendance</h3>
+    <table>
+      <thead><tr><th>Name</th><th>Roll No</th><th>Status</th><th>Time</th></tr></thead>
+      <tbody id="attendance-body"></tbody>
+    </table>
+    <button class="secondary" id="export-btn">Export CSV</button>
+  </div>
+
+  <div class="nav-links"><a href="index.html">&larr; Back to Home</a></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+<script src="js/teacher.js"></script>
+</body>
+</html>

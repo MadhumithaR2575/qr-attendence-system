@@ -1,0 +1,17 @@
+{
+  "name": "qr-attendance-backend",
+  "version": "1.0.0",
+  "description": "Backend for QR + Face + Location based attendance system",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "cors": "^2.8.5",
+    "lowdb": "^1.0.0",
+    "uuid": "^9.0.1",
+    "body-parser": "^1.20.2"
+  }
+}

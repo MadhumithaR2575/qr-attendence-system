@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Student Enrollment</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<div class="container">
+  <h1>Student Enrollment</h1>
+  <p class="subtitle">Register once, then enroll your face for attendance verification</p>
+
+  <div class="card" id="register-card">
+    <h3>Step 1: Register</h3>
+    <label>Full Name</label>
+    <input id="name" placeholder="e.g. Priya Sharma" />
+    <label>Roll Number</label>
+    <input id="rollNo" placeholder="e.g. CS21B045" />
+    <label>4-digit PIN (used to log in later)</label>
+    <input id="pin" type="password" maxlength="4" placeholder="e.g. 1234" />
+    <button id="register-btn">Register</button>
+    <div class="status" id="register-status"></div>
+  </div>
+
+  <div class="card" id="face-card" style="display:none;">
+    <h3>Step 2: Enroll Face</h3>
+    <p style="font-size:13px;color:#666;">Look straight at the camera in good lighting, then capture.</p>
+    <video id="video" autoplay muted playsinline></video>
+    <button id="capture-btn">Capture Face</button>
+    <div class="status" id="face-status"></div>
+  </div>
+
+  <div class="nav-links"><a href="index.html">&larr; Back to Home</a></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+<script src="js/enroll.js"></script>
+</body>
+</html>
