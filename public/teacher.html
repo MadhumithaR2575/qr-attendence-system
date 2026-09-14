@@ -29,7 +29,7 @@
 
   <div class="card qr-wrap" id="qr-card" style="display:none;">
     <h3 id="session-title"></h3>
-    <canvas id="qr-canvas"></canvas>
+    <img id="qr-image" alt="QR code" />
     <div class="timer" id="timer-text"></div>
     <button class="danger" id="end-btn">End Session</button>
   </div>
@@ -46,28 +46,6 @@
   <div class="nav-links"><a href="index.html">&larr; Back to Home</a></div>
 </div>
 
-<script>
-  // Try jsdelivr first; if it's blocked (common on some mobile networks), fall back to unpkg.
-  function loadScript(src, onSuccess, onError) {
-    const s = document.createElement('script');
-    s.src = src;
-    s.onload = onSuccess;
-    s.onerror = onError;
-    document.head.appendChild(s);
-  }
-  loadScript(
-    'https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js',
-    () => {},
-    () => {
-      console.warn('jsdelivr failed, trying unpkg fallback for qrcode.js');
-      loadScript(
-        'https://unpkg.com/qrcode@1.5.3/build/qrcode.min.js',
-        () => {},
-        () => console.error('Both QR code CDNs failed to load.')
-      );
-    }
-  );
-</script>
 <script src="js/teacher.js"></script>
 </body>
 </html>
