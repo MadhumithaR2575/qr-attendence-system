@@ -1,6 +1,7 @@
 // routes/sessions.js
 const express = require('express');
 const crypto = require('crypto');
+const QRCode = require('qrcode');
 const { v4: uuidv4 } = require('uuid');
 const db = require('../db');
 
@@ -71,17 +72,27 @@ router.post('/', (req, res) => {
   res.json({ session: created });
 });
 
-// Get current QR token/payload for a session (teacher page polls this to redraw the QR code)
-router.get('/:id/qr', (req, res) => {
+// Get current QR code (as a ready-to-display image) for a session.
+// Teacher page polls this to redraw the QR. Generating the image server-side means
+// the browser never needs to load an external QR-drawing library.
+router.get('/:id/qr', async (req, res) => {
   const session = db.get('sessions').find({ id: req.params.id }).value();
   if (!session) return res.status(404).json({ error: 'Session not found' });
   if (!session.active) return res.status(400).json({ error: 'Session has ended' });
 
-  res.json({
-    sessionId: session.id,
-    token: session.currentToken,
-    expiresAt: session.tokenExpiresAt
-  });
+  const payload = JSON.stringify({ sessionId: session.id, token: session.currentToken });
+
+  try {
+    const qrDataUrl = await QRCode.toDataURL(payload, { width: 280, margin: 1 });
+    res.json({
+      sessionId: session.id,
+      token: session.currentToken,
+      expiresAt: session.tokenExpiresAt,
+      qrDataUrl
+    });
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to generate QR code: ' + err.message });
+  }
 });
 
 // Get session details
